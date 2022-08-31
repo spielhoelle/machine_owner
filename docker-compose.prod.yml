@@ -1,33 +1,43 @@
 version: "3.9"
 
 services:
-  machine_owner_db:
-    container_name: machine_owner_db
-    image: mysql:5.7
-    volumes:
-      - db_data_machine_owner:/var/lib/mysql
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: somewordpress
-      MYSQL_DATABASE: machine_owner
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+  #machine_owner_db:
+    #container_name: machine_owner_db
+    #image: mysql:5.7
+    #volumes:
+      #- db_data_machine_owner:/var/lib/mysql
+    #restart: always
+    #environment:
+      #MYSQL_ROOT_PASSWORD: somewordpress
+      #MYSQL_DATABASE: machine_owner
+      #MYSQL_USER: wordpress
+      #MYSQL_PASSWORD: wordpress
 
   machine_owner_wp:
     container_name: machine_owner_wp
-    depends_on:
-      - machine_owner_db
+    #depends_on:
+      #- machine_owner_db
     image: wordpress:latest
     volumes:
       - ./wp-content:/var/www/html/wp-content
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     ports:
       - "8003:80"
     restart: always
     environment:
       VIRTUAL_HOST: mo.tmy.io
-      WORDPRESS_DB_HOST: machine_owner_db:3306
-      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_HOST: globalmysql
+      WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: machine_owner
+    networks:
+      - mysqlnet
+
+networks: 
+  mysqlnet: 
+      external: 
+            name: mysqlnet
+
 volumes:
   db_data_machine_owner: {}
+
