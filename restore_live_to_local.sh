@@ -1,0 +1,1 @@
+/Users/tommy/dotfiles/restore_live_to_local.sh
