@@ -1,0 +1,26 @@
+/*
+Theme Name: Machine Owner
+Theme URI: https://mo.tmy.io
+Author: Thomas Kuhnert
+Author URI: https://tmy.io
+Description: Basic theme on selling online courses
+Requires at least: 5.9
+Tested up to: 6.0
+Requires PHP: 5.6
+Version: 1.2
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: machine_owner
+Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, featured-images, full-site-editing, block-patterns, rtl-language-support, sticky-post, threaded-comments
+Template: twentytwentytwo
+*/
+
+.wp-site-blocks>*+* {
+	margin-block-start: 0 !important;
+}
+
+.wpcf7-form-control {
+	padding: 10px;
+	border-radius: 0;
+	border: 0;
+}
